@@ -1,30 +1,15 @@
 package com.example.androidlab
 
-fun main(){
-    var data = 10
-    val result = if(data>0){
-        println("data > 0")
-        true
+fun hofFun(arg: (Int) -> Boolean) : () -> String{
+    val result = if(arg(10)){
+        "valid"
     }else{
-        println("data <= 0")
-        false
+        "invalid"
     }
-    println(result)
-
-    obj.data = 30
-    obj.some()
+    return{"hofFun result: $result"}
 }
 
-open class Super(){
-    open var data = 10
-    open fun some(){
-        println("I am super some(): $data")
-    }
-}
-
-val obj = object: Super(){
-    override var data = 20
-    override fun some(){
-        println("I am object some(): $data")
-    }
+fun main(){
+    val result = hofFun({no -> no > 0})
+    println(result())
 }
